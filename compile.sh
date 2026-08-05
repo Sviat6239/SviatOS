@@ -1,1 +1,2 @@
 clang -target aarch64-unknown-windows-msvc "-Wl,-subsystem:efi_application" "-Wl,-entry:main" -fuse-ld=lld -nostdlib -o core.efi core.asm
+clang -target aarch64-unknown-windows-msvc "-Wl,-subsystem:efi_application" "-Wl,-entry:main" -fuse-ld=lld -nostdlib -o shell.efi shell.asm
