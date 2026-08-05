@@ -58,14 +58,21 @@ ExecuteCommand:
     add     x1, x1, :lo12:NewLineStr
     bl      PrintString
 
+    // Compare to 'help'
     adrp    x0, InputBuffer
     add     x0, x0, :lo12:InputBuffer
-
     adrp    x1, CmdHelp
     add     x1, x1, :lo12:CmdHelp
-
     bl      StrCmp16
     cbz     w0, DoHelp
+
+    // COmpare to 'ver'
+    adrp    x0, InputBuffer
+    add     x0, x0, :lo12:InputBuffer
+    adrp    x1, CmdVersion
+    add     x1, x1, :lo12:CmdVersion
+    bl      StrCmp16
+    cbz     w0, DoVersion
 
     mov     x0, x22
     adrp    x1, ExecutedStr
@@ -77,6 +84,13 @@ DoHelp:
     mov     x0, x22
     adrp    x1, HelpMsgStr
     add     x1, x1, :lo12:HelpMsgStr
+    bl      PrintString
+    b       PromptLoop
+
+DoVersion:
+    mov     x0, x22
+    adrp    x1, VersionMsg
+    add     x1, x1, :lo12:VersionMsg
     bl      PrintString
     b       PromptLoop
 
@@ -110,9 +124,7 @@ StrCmp_Equal:
 HelloStr:
     .hword 'W', 'e', 'l', 'c', 'o', 'm', 'e', ' '
     .hword 't', 'o', ' '
-    .hword 'S', 'v', 'i', 'a', 't', 'O', 'S', ' '
-    .hword 'v', 'e', 'r', ' '
-    .hword '0', '.', '0', '.', '2', '!', 13, 10, 0
+    .hword 'S', 'v', 'i', 'a', 't', 'O', 'S', ' ', 13, 10, 0
 
 PromptStr:
     .hword 'S', 'v', 'i', 'a', 't', 'O', 'S', '>', ' ', 0
@@ -126,14 +138,24 @@ ExecutedStr:
 
 HelpMsgStr:
     .hword 'S', 'v', 'i', 'a', 't', 'O', 'S', ' '
-    .hword 'H', 'e', 'l', 'p', ':', 13, 10
-    .hword ' ', ' ', 'h', 'e', 'l', 'p', ' '
+    .hword 'C', 'o', 'm', 'm', 'a', 'n', 'd', 's', ':', 13, 10
+    .hword ' ', ' ', '-', 'h', 'e', 'l', 'p', ' '
     .hword '-', ' ', 's', 'h', 'o', 'w', ' '
     .hword 't', 'h', 'i', 's', ' '
-    .hword 'm', 'e', 's', 's', 'a', 'g', 'e', 13, 10, 0
+    .hword 'm', 'e', 's', 's', 'a', 'g', 'e', 13, 10
+    .hword ' ', ' ', '-', 'v', 'e', 'r', ' '
+    .hword ' ', '-', ' ', 's', 'h', 'o', 'w', ' '
+    .hword 'v', 'e', 'r', 's', 'i', 'o', 'n', 13, 10, 0
 
 CmdHelp:
-    .hword 'h', 'e', 'l', 'p', 0
+    .hword '-', 'h', 'e', 'l', 'p', 0
+
+CmdVersion:
+    .hword '-', 'v', 'e', 'r', 0
+
+VersionMsg:
+    .hword 'K', 'e', 'r', 'n', 'e', 'l', ':' , ' ', '0', '.', '0', '.', '2', 13, 10
+    .hword 'S', 'h', 'e', 'l', 'l', ':', ' ', '0', '.', '0', '.', '1', 13, 10, 0
 
 KeyBuffer:
     .hword 0, 0, 0
