@@ -1,3 +1,5 @@
+//SHELL
+
 .section .text
 .globl main
 .p2align 3
@@ -14,11 +16,6 @@ main:
 
     ldr     x22, [x19, #0x40]    // x22 = EFI_SYSTEM_TABLE->ConOut
     ldr     x20, [x19, #0x30]    // x20 = EFI_SYSTEM_TABLE->ConIn
-
-    mov     x0, x22
-    adrp    x1, HelloStr
-    add     x1, x1, :lo12:HelloStr
-    bl      PrintString
 
 PromptLoop:
     mov     x0, x22
@@ -408,8 +405,10 @@ HexLoop:
     b.lt    HexDigit
     add     x3, x3, #('A' - 10)
     b       HexStore
+
 HexDigit:
     add     x3, x3, #'0'
+
 HexStore:
     strh    w3, [x19], #2
     subs    x2, x2, #4
@@ -424,11 +423,6 @@ HexStore:
 
 .section .data
 .p2align 3
-
-HelloStr:
-    .hword 'W', 'e', 'l', 'c', 'o', 'm', 'e', ' '
-    .hword 't', 'o', ' '
-    .hword 'S', 'v', 'i', 'a', 't', 'O', 'S', ' ', 13, 10, 0
 
 PromptStr:
     .hword 'S', 'v', 'i', 'a', 't', 'O', 'S', '>', ' ', 0
