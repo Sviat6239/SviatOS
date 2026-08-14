@@ -485,7 +485,7 @@ FetchOS:
 
 FetchFirmware:
     .hword 'F', 'i', 'r', 'm', 'w', 'a', 'r', 'e', ':', ' '
-    .hword 'U', 'E',102, 'I', ' ', 'b', 'y', ' ', 0
+    .hword 'U', 'E', 'F', 'I', ' ', 'b', 'y', ' ', 0
 
 FetchCPU:
     .hword 'C', 'P', 'U', ' ', 'M', 'I', 'D', 'R', ':', ' '
