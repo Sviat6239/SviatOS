@@ -46,7 +46,6 @@ _start:
 .align 4
 .L_STACK_TOP:           .word 0x3FC90000
 
-# Ключі ESP32-S3
 .L_WDT_KEY:             .word 0x50D83AA1
 .L_SWD_KEY:             .word 0x123B54D
 
