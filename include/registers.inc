@@ -26,7 +26,52 @@
 .equ INT_CORE0_CPU_INT_EIP_STATUS_REG, 0x600C2114
 
 # ------------------------------------------------------------------------------
-# 3. Cache, MMU & ExtRAM (Octal PSRAM / Flash Controller)
+# 3. GPIO Matrix Output Signal Muxing & Signal IDs
+# ------------------------------------------------------------------------------
+.equ GPIO_FUNC0_OUT_SEL_REG,        0x60004500
+.equ GPIO_FUNC16_OUT_SEL_REG,       0x60004540
+.equ GPIO_FUNC48_OUT_SEL_REG,       0x60004550
+
+.equ SIGNAL_LEDC_LS_OUT0_IDX,       45
+.equ SIGNAL_RMT_SIG_OUT0_IDX,       87
+.equ SIGNAL_SPICLK_OUT_IDX,         128
+
+# ------------------------------------------------------------------------------
+# 4. RMT (Remote Control Peripheral & WS2812B Timing Rules)
+# ------------------------------------------------------------------------------
+.equ RMT_BASE,                      0x60006000
+.equ RMT_CH0CONF0_REG,              0x60006000
+.equ RMT_CH0CONF1_REG,              0x60006004
+.equ RMT_CH0_BIT_DIV_REG,           0x60006008
+.equ RMT_SYS_CONF_REG,              0x600060B4
+.equ RMT_RAM_CH0_BASE,              0x60006800
+
+.equ RMT_WS2812B_CODE_0,            0x80070003
+.equ RMT_WS2812B_CODE_1,            0x80030007
+
+# ------------------------------------------------------------------------------
+# 5. LEDC (LED PWM Controller)
+# ------------------------------------------------------------------------------
+.equ LEDC_BASE,                     0x60019000
+.equ LEDC_HSTIMER0_CONF_REG,        0x60019000
+.equ LEDC_HSTIMER0_VALUE_REG,       0x60019004
+.equ LEDC_HSCH0_CONF0_REG,          0x60019008
+.equ LEDC_HSCH0_HPOINT_REG,         0x6001900C
+.equ LEDC_HSCH0_DUTY_REG,           0x60019010
+.equ LEDC_HSCH0_CONF1_REG,          0x60019014
+.equ LEDC_SYS_CONF_REG,             0x600190C0
+
+# ------------------------------------------------------------------------------
+# 6. I2S Peripheral (Audio / Parallel Out)
+# ------------------------------------------------------------------------------
+.equ I2S0_BASE,                     0x6000F000
+.equ I2S_TX_START_REG,              0x6000F000
+.equ I2S_TX_CONF_REG,               0x6000F004
+.equ I2S_TX_CLKM_CONF_REG,          0x6000F020
+.equ I2S_TX_CONF1_REG,              0x6000F028
+
+# ------------------------------------------------------------------------------
+# 7. Cache, MMU & ExtRAM (Octal PSRAM / Flash Controller)
 # ------------------------------------------------------------------------------
 .equ EXTMEM_BASE,                   0x600C4000
 .equ EXTMEM_CACHE_CONF_REG,         0x600C4000
@@ -37,7 +82,7 @@
 .equ EXTMEM_SPI_SMEM_TIMING_CONFIG_REG, 0x600C40A0
 
 # ------------------------------------------------------------------------------
-# 4. USB Serial / JTAG Controller (Native USB Console)
+# 8. USB Serial / JTAG Controller (Native USB Console)
 # ------------------------------------------------------------------------------
 .equ USB_SERIAL_JTAG_BASE,          0x60043000
 .equ USB_SERIAL_JTAG_EP1_REG,       0x60043000
@@ -49,7 +94,7 @@
 .equ USB_SERIAL_JTAG_CONF0_REG,     0x60043018
 
 # ------------------------------------------------------------------------------
-# 5. UART0 (Hardware Serial)
+# 9. UART0 (Hardware Serial)
 # ------------------------------------------------------------------------------
 .equ UART0_BASE,                    0x60000000
 .equ UART0_FIFO_REG,                0x60000000
@@ -63,7 +108,7 @@
 .equ UART0_CONF1_REG,               0x60000024
 
 # ------------------------------------------------------------------------------
-# 6. General DMA Controller (GDMA - Channel 0)
+# 10. General DMA Controller (GDMA - Channel 0)
 # ------------------------------------------------------------------------------
 .equ GDMA_BASE,                     0x6003F000
 .equ GDMA_IN_INT_RAW_CH0_REG,       0x6003F000
@@ -75,7 +120,7 @@
 .equ GDMA_MISC_CONF_REG,            0x6003F500
 
 # ------------------------------------------------------------------------------
-# 7. Timers & Watchdog (TIMG0 / TIMG1 / SysTimer)
+# 11. Timers & Watchdog (TIMG0 / TIMG1 / SysTimer)
 # ------------------------------------------------------------------------------
 .equ TIMG0_BASE,                    0x6001F000
 .equ TIMG0_T0CONFIG_REG,            0x6001F000
@@ -91,7 +136,7 @@
 .equ SYSTIMER_UNIT0_OP_REG,         0x60023008
 
 # ------------------------------------------------------------------------------
-# 8. SPI2 (General Purpose SPI - GPSPI2)
+# 12. SPI2 (General Purpose SPI - GPSPI2)
 # ------------------------------------------------------------------------------
 .equ SPI2_BASE,                     0x60024000
 .equ SPI2_CMD_REG,                  0x60024000
@@ -105,7 +150,7 @@
 .equ SPI2_W0_REG,                   0x60024098
 
 # ------------------------------------------------------------------------------
-# 9. I2C0 Controller
+# 13. I2C0 Controller
 # ------------------------------------------------------------------------------
 .equ I2C0_BASE,                     0x60013000
 .equ I2C0_SCL_LOW_PERIOD_REG,       0x60013000
@@ -116,7 +161,7 @@
 .equ I2C0_DATA_FIFO_REG,            0x6001301C
 
 # ------------------------------------------------------------------------------
-# 10. RTC_CNTL (Power, Deep Sleep, Main System Reset)
+# 14. RTC_CNTL (Power, Deep Sleep, Main System Reset)
 # ------------------------------------------------------------------------------
 .equ RTC_CNTL_BASE,                 0x60008000
 .equ RTC_CNTL_OPTIONS0_REG,         0x60008000
@@ -127,7 +172,7 @@
 .equ RTC_CNTL_SW_SYS_RST_REG,       0x600080C0
 
 # ------------------------------------------------------------------------------
-# 11. EFUSE Controller (Chip Info, MAC Address)
+# 15. EFUSE Controller (Chip Info, MAC Address)
 # ------------------------------------------------------------------------------
 .equ EFUSE_BASE,                    0x60007000
 .equ EFUSE_PGM_DATA0_REG,           0x60007000
