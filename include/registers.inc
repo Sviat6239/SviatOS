@@ -177,3 +177,27 @@
 .equ EFUSE_BASE,                    0x60007000
 .equ EFUSE_PGM_DATA0_REG,           0x60007000
 .equ EFUSE_RD_MAC_SPI_SYS_0_REG,    0x60007044
+
+# ------------------------------------------------------------------------------
+# 16. GPIO Base Registers & Bitmasks
+# ------------------------------------------------------------------------------
+.equ GPIO_BASE,                     0x60004000
+
+.equ GPIO_OUT_REG,                  0x60004004  # Output GPIO0-31
+.equ GPIO_OUT_W1TS_REG,             0x60004008  # Set GPIO0-31 (Write 1 to set)
+.equ GPIO_OUT_W1TC_REG,             0x6000400C  # Clear GPIO0-31 (Write 1 to clear)
+
+.equ GPIO_OUT1_REG,                 0x60004010  # Output GPIO32-53
+.equ GPIO_OUT1_W1TS_REG,            0x60004014  # Set GPIO32-53
+.equ GPIO_OUT1_W1TC_REG,            0x60004018  # Clear GPIO32-53
+
+.equ GPIO_ENABLE_REG,               0x60004020  # Enable output GPIO0-31
+.equ GPIO_ENABLE_W1TS_REG,          0x60004024  # Enable set GPIO0-31
+.equ GPIO_ENABLE_W1TC_REG,          0x60004028  # Enable clear GPIO0-31
+
+.equ GPIO_ENABLE1_REG,              0x6000402C  # Enable output GPIO32-53
+.equ GPIO_ENABLE1_W1TS_REG,         0x60004030  # Enable set GPIO32-53
+.equ GPIO_ENABLE1_W1TC_REG,         0x60004034  # Enable clear GPIO32-53
+
+# System Clock Bits (SYSTEM_PERIP_CLK_EN0_REG)
+.equ SYSTEM_GPIO_CLK_EN,            (1 << 0)    # Bit 0 enables GPIO bus clock
